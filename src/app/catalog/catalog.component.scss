@@ -1,0 +1,23 @@
+
+
+.example-card {
+  max-width: 15em;
+  margin-top: 3em
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+[button-fab]{
+  position: absolute;
+  right: 30px;
+  bottom: 15px;
+}
+
+[button-fabs]{
+  transform: translateX(200vh); /* Bringing the button to the right */
+  bottom: 5px; /* Ensure it's 5 px from the bottom */
+  position: sticky; /* Sticks it in position when scrolling */
+}

@@ -1,0 +1,76 @@
+<h2>Nuevo Producto</h2>
+<form (ngSubmit)="crearPersona()" #forma="ngForm">
+  <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">Nombre</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control"  placeholder="nombre" [(ngModel)]="personaNew.name" name="nombres" required  >
+    </div>
+  </div>
+  <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">Apellidos</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control"  placeholder="Apellidos" [(ngModel)]="personaNew.apellidos" name="apellidos" required >
+    </div>
+  </div>
+  <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">Telefono</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control"  placeholder="Telefono" [(ngModel)]="personaNew.telefono" name="telefono" required >
+    </div>
+  </div>
+  <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">Direccion</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control"  placeholder="Direccion" [(ngModel)]="personaNew.direccion" name="direccion">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control"  placeholder="Email" [(ngModel)]="personaNew.email" name="email">
+    </div>
+  </div>
+  <fieldset class="form-group">
+    <div class="row">
+      <legend class="col-form-label col-sm-2 pt-0">Sexo</legend>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gridRadios" value="MA" [(ngModel)]="personaNew.sexo" [checked]="personaNew.sexo == 'MA'" required >
+          <label class="form-check-label">
+            Masculino
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gridRadios" value="FE" [(ngModel)]="personaNew.sexo" [checked]="personaNew.sexo == 'FE'" required >
+          <label class="form-check-label">
+            Femenino
+          </label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <div class="form-group row">
+    <label  class="col-sm-2 col-form-label" >Nacimiento</label>
+    <div class="col-sm-10">
+      <input type='date' name="nacimiento" [ngModel] ="personaNew.nacimiento | date:'yyyy-MM-dd'" (ngModelChange)="personaNew.nacimiento = $event"/>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">C.I.</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control"  placeholder="Carnet de internet" [(ngModel)]="personaNew.ci" name="ci" required >
+    </div>
+  </div>
+  <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">Nacionalidad</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control"  placeholder="Nacionalidad" [(ngModel)]="personaNew.nacionalidad" name="nacionalidad">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button [disabled]="!forma.valid" type="submit" class="btn btn-primary">Crear Persona</button>
+    </div>
+  </div>
+</form>
+<a routerLink="/catalog" class="btn btn-outline-danger">Regresar</a>
