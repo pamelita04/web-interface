@@ -1,38 +1,54 @@
-<div class="container"
-     fxLayout="row"
-     fxLayout.sm="column"
-     fxLayout.xs="column"
-     fxLayoutAlign.gt-md="space-around center"
-     fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
-  <div fxFlex="40" *ngIf="item">
+<div class="form-container">
     <mat-card>
-      <mat-card-title-group>
-        <mat-card-title>
-          <h3>{{item.name | uppercase}}</h3>
-        </mat-card-title>
-      </mat-card-title-group>
-      <img matCardImage src={{item.image}} alt={{item.name}}>
+      <mat-card-title>
+        Detalle de Producto
+      </mat-card-title>
+      <mat-divider></mat-divider>
       <mat-card-content>
-        <p>{{item.description}}
-        </p>
+        <div class="fields-container">
+          <div>
+            <mat-form-field class="input-field">
+              <input [(ngModel)]="item.modelo" matInput placeholder="Modelo" value="">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="input-field">
+                <input [(ngModel)]="item.marca" matInput placeholder="Marca" value="">
+              </mat-form-field>
+            <br>
+            
+          </div>
+          <div>
+            <mat-form-field class="input-field">
+              <input [(ngModel)]="item.cantidad" matInput placeholder="Cantidad" value="">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="input-field">
+              <input [(ngModel)]="item.gasto_total" matInput placeholder="Precio" value="">
+            </mat-form-field>
+            $us.
+            <br>
+          
+          </div>
+        </div>
+        <div class="images">
+          <div class="image">
+            <img [src]="item.image0" *ngIf="item.image0">
+          </div>
+          <div class="image">
+            <img [src]="item.image1" *ngIf="item.image1">
+          </div>
+          <div class="image">
+            <img [src]="item.image2" *ngIf="item.image2">
+          </div>
+        </div>
+        <br>
       </mat-card-content>
-      <mat-card-actions align="start">
-        
-        
-      </mat-card-actions>
-    </mat-card>
-    <button mat-raised-button color="primary" (click)="goBack()">BACK</button>
-  </div>
 
-  <div fxFlex="40" *ngIf="item && item.comments">
-    <h1>Detalles del producto</h1>
-    <mat-list>
-      <mat-list-item >
-        <p matLine>Nombre: {{item.name}}</p>
-        <p matLine>Categoria: {{item.category}}</p>
-        <p>Description: {{item.description}}
-      </mat-list-item>
-    </mat-list>
+      <button mat-raised-button color="primary" (click)="deleteItem()">Eliminar</button>
+  
+      <mat-divider></mat-divider>
+      <mat-card-footer>
+        <a routerLink="/catalog" mat-button>Regresar</a>
+      </mat-card-footer>
+    </mat-card>
   </div>
-</div>

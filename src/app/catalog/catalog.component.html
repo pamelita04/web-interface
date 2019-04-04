@@ -20,22 +20,24 @@
     <h1> {{selectedItem}}</h1>
   </div>
 
-  <div fxLayoutGap="1.5em" fxLayout="row wrap">
+  <div fxLayoutGap="2.3em" fxLayout="row wrap">
     
     <mat-card class="example-card" *ngFor="let item of items">
       <mat-card-header>
         <div mat-card-avatar>
-          <mat-icon>favorite</mat-icon>
+          <mat-icon>settings</mat-icon>
         </div>
         <mat-card-title>{{item.modelo}}</mat-card-title>
         <mat-card-subtitle>Categoria: {{item.nombre_categoria}}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="" alt="imagen">
+      <img mat-card-image src="{{item.image0}}" alt="imagen">
       <mat-card-content>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" [routerLink]="['/itemdetail', item.id]">Ver Detalle</button>
-      </mat-card-actions>
+      <!-- <mat-card-actions> -->
+        <div center>
+          <button mat-raised-button color="primary" [routerLink]="['/itemdetail', item.id]">Ver Detalle</button>
+        </div>
+      <!-- </mat-card-actions> -->
     </mat-card>
     
   </div>

@@ -10,11 +10,10 @@ import { map, filter, switchMap } from 'rxjs/operators';
 export class ItemService {
 
   baseUrl = 'http://localhost:8080/articulos';
+  baseUrlCost = 'http://localhost:8080/gastos';
 
   constructor(private http: HttpClient) {
   }
-
-  
 
   getItems(): Observable<Item[]> {
     return <Observable<Item[]>>this.http.get(this.baseUrl );
@@ -29,18 +28,34 @@ export class ItemService {
   }
 
   createItem(item: Item) {
-    const body = JSON.stringify(item);
-    console.log(body);
     const httpOpciones = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post(this.baseUrl, body, httpOpciones).pipe(map( res => {
-      console.log('create');
-      console.log(res);
+    this.http.post(this.baseUrlCost, { "total_costo": item.gasto_total }, httpOpciones).pipe(map( res => {
       return res;
-    }));
+    })).subscribe(data => {
+      const response: any = data;
+      const costo_id = response.id;
+      const body = {
+        "categoria_id": 1,
+        "marca": item.marca,
+        "modelo": item.modelo,
+        "capacidad": item.capacidad,
+        "gasto_total": item.gasto_total,
+        "gasto_id": costo_id,
+        "cantidad": item.cantidad,
+        "estado": item.estado
+      };
+      
+      this.http.post(this.baseUrl, JSON.stringify(body), httpOpciones).pipe(map( res => {
+        return res;
+      })).subscribe(data => {
+        console.log('----------------')
+        console.log(data)
+      });
+    });
   }
 
   updateItem(item: Item, llave: string) {
@@ -62,8 +77,8 @@ export class ItemService {
 
   }
 
-  postFile(image: any): Observable<boolean> {
-    const endpoint = 'http://localhost:8080/items/1/image';
+  postFile(id, image: any): Observable<boolean> {
+    const endpoint = 'http://localhost:8080/items/id/image';
     const httpOpciones = {
       headers: new HttpHeaders({
         'Content-Type': 'multipart/form-data'

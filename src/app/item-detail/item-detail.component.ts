@@ -12,10 +12,14 @@ import {Location} from '@angular/common';
 export class ItemDetailComponent implements OnInit {
 
   item: Item;
+  image1;
+  image2;
 
   constructor(private itemService: ItemService,
               private route: ActivatedRoute,
               private location: Location) {
+
+                
   }
 
   ngOnInit() {
@@ -26,6 +30,13 @@ export class ItemDetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  deleteItem(){
+    let id ="" + this.item.id;
+    this.itemService.deleteItem(id).subscribe(item => {
+      console.log("removed")
+    });
   }
 
 }

@@ -1,7 +1,7 @@
 
 
 .example-card {
-  max-width: 15em;
+  max-width: 18em;
   margin-top: 3em
 }
 
@@ -17,7 +17,12 @@
 }
 
 [button-fabs]{
-  transform: translateX(200vh); /* Bringing the button to the right */
+  transform: translateX(190vh); /* Bringing the button to the right */
   bottom: 5px; /* Ensure it's 5 px from the bottom */
   position: sticky; /* Sticks it in position when scrolling */
+}
+
+[center]{
+  display: flex;
+  justify-content: center;
 }

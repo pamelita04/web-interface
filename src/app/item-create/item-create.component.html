@@ -1,76 +1,85 @@
-<h2>Nuevo Producto</h2>
-<form (ngSubmit)="crearPersona()" #forma="ngForm">
-  <div class="form-group row">
-    <label  class="col-sm-2 col-form-label">Nombre</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control"  placeholder="nombre" [(ngModel)]="personaNew.name" name="nombres" required  >
-    </div>
-  </div>
-  <div class="form-group row">
-    <label  class="col-sm-2 col-form-label">Apellidos</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control"  placeholder="Apellidos" [(ngModel)]="personaNew.apellidos" name="apellidos" required >
-    </div>
-  </div>
-  <div class="form-group row">
-    <label  class="col-sm-2 col-form-label">Telefono</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control"  placeholder="Telefono" [(ngModel)]="personaNew.telefono" name="telefono" required >
-    </div>
-  </div>
-  <div class="form-group row">
-    <label  class="col-sm-2 col-form-label">Direccion</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control"  placeholder="Direccion" [(ngModel)]="personaNew.direccion" name="direccion">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label  class="col-sm-2 col-form-label">Email</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control"  placeholder="Email" [(ngModel)]="personaNew.email" name="email">
-    </div>
-  </div>
-  <fieldset class="form-group">
-    <div class="row">
-      <legend class="col-form-label col-sm-2 pt-0">Sexo</legend>
-      <div class="col-sm-10">
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" value="MA" [(ngModel)]="personaNew.sexo" [checked]="personaNew.sexo == 'MA'" required >
-          <label class="form-check-label">
-            Masculino
-          </label>
+<div class="form-container">
+    <mat-card>
+      <mat-card-title>
+        Agregar Producto
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <div class="fields-container">
+          <div>
+            <mat-form-field class="input-field">
+              <input [(ngModel)]="item.modelo" matInput placeholder="Modelo" value="">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="input-field">
+              <mat-label>Marca</mat-label>
+              <mat-select [(ngModel)]="item.marca">
+                <mat-option *ngFor="let marca of marcas" [value]="marca">
+                  {{marca}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="input-field">
+              <mat-label>Categoría</mat-label>
+              <mat-select [(ngModel)]="selectedCategory">
+                <mat-option *ngFor="let category of categories" [value]="category">
+                  {{category.nombre}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="input-field">
+              <input [(ngModel)]="item.capacidad" matInput placeholder="Capacidad / Potencia" value="">
+            </mat-form-field>
+          </div>
+          <div>
+            <div class="radio">
+              <label class="radio-label">Estado del item</label>
+              <mat-radio-group [(ngModel)]="item.estado">
+                <mat-radio-button class="radio-value" [value]="0" color="primary"> Nuevo </mat-radio-button>
+                <mat-radio-button class="radio-value" [value]="1" color="primary"> Usado </mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <mat-form-field class="input-field">
+              <input [(ngModel)]="item.cantidad" matInput placeholder="Cantidad" value="">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="input-field">
+              <input [(ngModel)]="item.gasto_total" matInput placeholder="Precio" value="">
+            </mat-form-field>
+            $us.
+            <br>
+          <div class="choose-file">
+            <button class="input-button" mat-stroked-button color="primary">
+              <mat-icon>photo</mat-icon>
+              Añadir imagen
+            </button>
+            <input type="file" (change)="onSelectFile($event)" class="input-file"/>
+          </div>
+          </div>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" value="FE" [(ngModel)]="personaNew.sexo" [checked]="personaNew.sexo == 'FE'" required >
-          <label class="form-check-label">
-            Femenino
-          </label>
+        <div class="images">
+          <div class="image">
+            <img [src]="image0" *ngIf="image0">
+          </div>
+          <div class="image">
+            <img [src]="image1" *ngIf="image1">
+          </div>
+          <div class="image">
+            <img [src]="image2" *ngIf="image2">
+          </div>
         </div>
-      </div>
-    </div>
-  </fieldset>
-  <div class="form-group row">
-    <label  class="col-sm-2 col-form-label" >Nacimiento</label>
-    <div class="col-sm-10">
-      <input type='date' name="nacimiento" [ngModel] ="personaNew.nacimiento | date:'yyyy-MM-dd'" (ngModelChange)="personaNew.nacimiento = $event"/>
-    </div>
+        <br>
+        <button mat-raised-button color="primary" (click)="saveItem()">Guardar</button>
+      </mat-card-content>
+  
+      <mat-divider></mat-divider>
+      <mat-card-footer>
+        <a routerLink="/catalog" mat-button>Regresar</a>
+      </mat-card-footer>
+    </mat-card>
   </div>
-  <div class="form-group row">
-    <label  class="col-sm-2 col-form-label">C.I.</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control"  placeholder="Carnet de internet" [(ngModel)]="personaNew.ci" name="ci" required >
-    </div>
-  </div>
-  <div class="form-group row">
-    <label  class="col-sm-2 col-form-label">Nacionalidad</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control"  placeholder="Nacionalidad" [(ngModel)]="personaNew.nacionalidad" name="nacionalidad">
-    </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-10">
-      <button [disabled]="!forma.valid" type="submit" class="btn btn-primary">Crear Persona</button>
-    </div>
-  </div>
-</form>
-<a routerLink="/catalog" class="btn btn-outline-danger">Regresar</a>
+  
+  <div>{{item.marca}}</div>
+  <div>{{item.modelo}}</div>
