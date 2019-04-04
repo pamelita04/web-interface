@@ -1,1 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink';
+
+$lt-gray: #ddd;
+$background-dark: rgb(8, 12, 71);
+$background-light: rgb(32, 17, 167);
+$background-pale: #D1C4E9;
+$primary-color-dark: rgb(45, 68, 168);
+$primary-color: rgb(58, 102, 183);
+$primary-color-light: #D1C4E9;
+$primary-color-text: #FFFFFF;
+$accent-color: #FFC107;
+$primary-text-color: #212121;
+$secondary-text-color: #757575;
+$divider-color: #BDBDBD;
+
+@mixin zero-margin($pad-up-down, $pad-left-right) {
+  margin: 0px auto;
+  padding: $pad-up-down $pad-left-right;
+}
+
+// some basic resets
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+.container {
+  margin: 20px;
+  display: flex;
+}
+
+.background-primary {
+  background-color: $background-dark !important;
+}
+
+.background-accent {
+  background-color: $accent-color !important;
+}
+
+.text-floral-white {
+  color: floralwhite !important;
+}
+
+.flex-spacer {
+  flex: 1 1 auto;
+}
