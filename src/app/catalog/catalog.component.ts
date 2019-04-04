@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../shared/item';
 import { ItemService } from '../services/item.service';
+import { Category } from '../shared/category';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-catalog',
@@ -10,9 +12,12 @@ import { ItemService } from '../services/item.service';
 export class CatalogComponent implements OnInit {
 
   items: Item[];
-  selectedItem: Item;
+  categories: Category[];
+  // categories: any;
+  selectedItem;
+  backItems: Item[];
 
-  constructor(private itemService: ItemService) {
+  constructor(private itemService: ItemService, private categoryService: CategoryService) {
   }
 
   ngOnInit() {
@@ -22,15 +27,18 @@ export class CatalogComponent implements OnInit {
   }
 
   loadCategorias(){
-    this.itemService.getItems().subscribe(items => this.items = items);
-    console.log("ITEMS---", this.items)
+    this.categoryService.getCategories().subscribe(categories => this.categories = categories);
   }
 
   loadItems(){
-
+    this.itemService.getItems().subscribe(items => this.items = this.backItems = items);
   }
 
-  onSelect(item: Item) {
-    this.selectedItem = item;
+  filterCatalog(event){
+    if(this.selectedItem){
+      this.items = this.backItems.filter(element => element.nombre_categoria == this.selectedItem)
+    }else{
+      this.loadItems()
+    }
   }
 }

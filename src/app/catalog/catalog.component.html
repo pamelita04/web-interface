@@ -1,29 +1,30 @@
 <div class="container" fxLayout="column" fxLayoutGap="10px">
 
   <div fxFlex>
-    <div>
+    <div fxLayoutGap="1.5em" fxLayout="row wrap">
       <h3>Catalogo</h3>
-      <hr>
+     
+      <mat-form-field>
+          <mat-label>Seleccion Categoria</mat-label>
+          <mat-select placeholder="Categoria" [(value)]="selectedItem"  (selectionChange)="filterCatalog($event)">
+            <mat-option>Todas</mat-option>
+            <mat-option *ngFor="let obj of categories" [value]="obj.nombre">
+                {{ obj.nombre }}
+            </mat-option>
+    
+          </mat-select>
+        </mat-form-field>
+
     </div>
+    <hr>
+    <h1> {{selectedItem}}</h1>
   </div>
 
   <div fxLayoutGap="1.5em" fxLayout="row wrap">
-    <!--binding del dom al property del objeto
-    [propiedadDelComponente]="valorDesdeElDOM"
-    bind-propiedadDelComponente="valorDesdeElDOM"
-    -->
-    <!-- <mat-grid-list [cols]="2" bind-rowHeight="'200px'" [gutterSize]="'10px'">
-      <mat-grid-tile *ngFor="let item of items" [routerLink]="['/itemdetail', item.id]" [colspan]="1" [rowspan]="1"
-                     (click)="onSelect(item)">
-        <img height="200px" src={{item.image}} alt={{item.name}}>
-        <mat-grid-tile-footer>
-          <h1 mat-line>{{item.name | uppercase}}</h1>
-        </mat-grid-tile-footer>
-      </mat-grid-tile>
-    </mat-grid-list> -->
+    
     <mat-card class="example-card" *ngFor="let item of items">
       <mat-card-header>
-        <div mat-card-avatar >
+        <div mat-card-avatar>
           <mat-icon>favorite</mat-icon>
         </div>
         <mat-card-title>{{item.modelo}}</mat-card-title>
@@ -33,19 +34,14 @@
       <mat-card-content>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary"  [routerLink]="['/itemdetail', item.id]" >Ver Detalle</button>
+        <button mat-raised-button color="primary" [routerLink]="['/itemdetail', item.id]">Ver Detalle</button>
       </mat-card-actions>
     </mat-card>
-
-
+    
   </div>
-
-
-
-   <!-- <app-item-detail [routerLink]="['/itemdetail', item.id]"></app-item-detail> -->
 </div>
 <div button-fabs>
-    <button mat-mini-fab color="warn" aria-label="Agregar item" matTooltip="Agregar item" [routerLink]="['/create']">
-        <mat-icon>add</mat-icon>
-      </button>
+  <button mat-mini-fab color="warn" aria-label="Agregar item" matTooltip="Agregar item" [routerLink]="['/create']">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
