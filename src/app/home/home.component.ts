@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.item = this.itemService.getFeaturedItem();
+    this.itemService.getItem(1).subscribe(item => this.item = item);
   }
 
 }

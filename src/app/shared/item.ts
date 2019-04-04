@@ -1,13 +1,14 @@
-import {Comment} from './comment';
 
 export class Item {
   id: number;
-  featured: boolean;
-  name: string;
-  image: string;
-  category: string;
-  label: string;
-  price: string;
-  description: string;
-  comments: Comment[];
+  codigo_categoria: string;
+  nombre_categoria: string;
+  categoria_id: number;
+  marca: string;
+  modelo: string;
+  capacidad: string;
+  gasto_total: number;
+  gasto_id: number;
+  cantidad: number;
+  estado: string;
 }

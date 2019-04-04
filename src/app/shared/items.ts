@@ -1,6 +1,6 @@
-import {Item} from './item';
+// import {Item} from './item';
 
-export const ITEMS: Item[] = [
+export const ITEMS = [
   {
     id: 0,
     featured: true,
